@@ -1,13 +1,17 @@
-$("span:even").css('color', 'red');
-
-var paragraphs = $('p');
-paragraphs.each(function(index, element) {
-
-    var button = '<button class="btn" data-tmp="' + index + '">Click me</button>'
-    $(element).append(button) 
-
-});
-
-$("button").click(function(){
-	alert($(this).attr("data-tmp"));
+$(function(){
+	var carouselList = $("#carousel ul");
+  	setInterval(changeSlide,3000);
+  
+  function changeSlide(){
+    carouselList
+      .animate({marginLeft:-400}, 500, placeFirstSlideAfterLast);
+  }
+   
+  function placeFirstSlideAfterLast(){
+    carouselList
+      .find("li:last")
+      .after(carouselList.find("li:first"));
+    carouselList
+      .css({marginLeft:0});
+  };
 });
